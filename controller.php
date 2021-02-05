@@ -8,7 +8,16 @@ function crTabCountries(){
   return $tbCountries;
 }
 
-function crTabMsgErr ($tabCountries, &$showForm) {
+function crTabDiploma(){
+  $tbDiploma[0] = "Sans";
+  $tbDiploma[1] = "Bac";
+  $tbDiploma[2] = "Bac+2";
+  $tbDiploma[3] = "Bac+3 ou supérieur";
+
+  return $tbDiploma;
+}
+
+function crTabMsgErr ($tabCountries, $tabDiploma, &$showForm) {
 
   $tabMsgErr = array();
 
@@ -25,50 +34,108 @@ function crTabMsgErr ($tabCountries, &$showForm) {
     
   if (isset($_POST["btnSubmit"])) {
       $birthDate = $_POST["birthDate"];
-      $month = substr($birthDate, 3, 2) ;
-      $day = substr($birthDate, 0, 2);
-      $year = substr($birthDate, 6, 4);
+      // if the input field is text type
+      if (substr($birthDate, 2 , 1) == "/"){
+        $month = (int) substr($birthDate, 3, 2) ;
+        $day = (int) substr($birthDate, 0, 2);
+        $year =(int)  substr($birthDate, 6, 4);
+      } else {
+        $month = (int) substr($birthDate, 5, 2) ;
+        $day = (int) substr($birthDate, 8, 2);
+        $year = (int) substr($birthDate, 0, 4);
+      }
+      $birthDate = $day . "/" . $month . "/" . $year;
       $showForm = false;
 
       // control fields
       // lastname
-      if (!preg_match("#^[a-zA-Z-]+$#", $_POST["lastname"])){
+      if (empty($_POST["lastname"])){
+        $tabMsgErr["lastname"] = "Le nom doit être saisi";
+        $showForm = true;
+      } elseif (!preg_match("#^[a-zA-Z-]+$#", $_POST["lastname"])){
         $tabMsgErr["lastname"] = "Le nom n'est pas bien saisi";
         $showForm = true;
       }
       // firstname
-      if (!preg_match("#^[a-zA-Z-]+$#", $_POST["firstname"])){
+      if (empty($_POST["firstname"])){
+        $tabMsgErr["firstname"] = "Le prénom doit être saisi";
+        $showForm = true;
+      } elseif (!preg_match("#^[a-zA-Z-]+$#", $_POST["firstname"])){
         $tabMsgErr ["firstname"] = "Le prénom n'est pas bien saisi";
         $showForm = true;
       }
       // birthday
-      if (!preg_match("#^([0-9]{2}/){2}([1][9][0-9]{2}|[2][0][0-1][0-9])$#", $birthDate) || !checkdate($month, $day, $year)){
+      if (empty($_POST["birthDate"])){
+        $tabMsgErr["birthDate"] = "La date anniversaire doit être saisie";
+        $showForm = true;
+      } elseif (!preg_match("#^([0-9]{2}\/){2}([1][9][0-9]{2}|[2][0][0-1][0-9])$#", $birthDate) || !checkdate($month, $day, $year)){
         $tabMsgErr["birthDate"] = "La date anniversaire est incorrecte";
         $showForm = true;
       }
       // Tel number 0xyyyyyyyy
-      if (!preg_match("#^[0][1-8]([-./ ]?[0-9]{2}){4}$#", $_POST["tel"])){
+      if (empty($_POST["tel"])){
+        $tabMsgErr["tel"] = "Le n° de tél doit être saisi";
+        $showForm = true;
+      } elseif (!preg_match("#^[0][1-8]([-./ ]?[0-9]{2}){4}$#", $_POST["tel"])){
         $tabMsgErr["tel"] = "le n° de tél n'est pas bien saisi";
         $showForm = true;
       }
+      // Diplôme
+      if (empty($_POST["degree"])){
+        $tabMsgErr["degree"] = "Choisissez votre niveau d'études";
+        $showForm = true;
+      } elseif (!in_array($_POST["degree"], $tabDiploma)){
+        $tabMsgErr["degree"] = "Choisissez votre niveau d'études parmi les propositions";
+        $showForm = true;
+      }
       // email
-      if (!preg_match("#^[a-z0-9.-_]+@[a-z]{2,}\.[a-z]{2,4}$#", $_POST["email"])){
+      if (empty($_POST["email"])){
+        $tabMsgErr["email"] = "Le mél doit être saisi";
+        $showForm = true;
+      } elseif (!preg_match("#^[a-z0-9.-_]+@[a-z]{2,}\.[a-z]{2,4}$#", $_POST["email"])){
         $tabMsgErr["email"] = "le mél est incorrect";
         $showForm = true;
       }
       // number of badges
-      if (!preg_match("#^[0-9]$#", $_POST["numberBadge"])){
+      if (empty($_POST["numberBadge"])){
+        $tabMsgErr["numberBadge"] = "Le nombre de badges doit être saisi";
+        $showForm = true;
+      } elseif (!preg_match("#^[0-9]$#", $_POST["numberBadge"])){
         $tabMsgErr["numberBadge"] = "le nbre de badge doit être <10";
         $showForm = true;
       }
-      var_dump($_POST["country"]);
       // country's control
-      if (in_array($_POST["country"], $tabCountries())){
+      if (empty($_POST["country"])){
+        $tabMsgErr["country"] = "Le pays doit être saisi";
+        $showForm = true;
+      } elseif (!in_array($_POST["country"], $tabCountries)){
         $tabMsgErr["country"] = "Choisissez le pays dans la liste";
+        $showForm = true;
+      }
+      // Pole emploi's number
+      if (empty($_POST["numberEmploy"])){
+        $tabMsgErr["numberEmploy"] = "Le n° pôle emploi doit être saisi";
+        $showForm = true;
+      } elseif (!preg_match("#^[0-9]{7}[A-Z]$#", $_POST["numberEmploy"])){
+        $tabMsgErr["numberEmploy"] = "le n° pôle emploi doit être 7 chiffres et 1 lettre MAJ";
         $showForm = true;
       }
       
     }
+    var_dump($tabMsgErr);
+
+    // if (count($tabMsgErr)<1){
+    //   header("Location:index.php");
+    //   exit;
+    // }
   return $tabMsgErr;
 }
+
+//function errorMessages()
+// function du corrigé
+// if (isset($_POST["btnSubmit"])){
+//   if (isset($_POST["lastname"])){
+
+//   }
+// }
 ?>
