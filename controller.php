@@ -121,21 +121,15 @@ function crTabMsgErr ($tabCountries, $tabDiploma, &$showForm) {
         $showForm = true;
       }
       
+      // if (count($tabMsgErr)<1){
+      //   header("Location:index.php");
+      //   exit;
+      // }
+    // fin if isset(btnSubmit)
     }
-    var_dump($tabMsgErr);
+    // var_dump($tabMsgErr);
 
-    // if (count($tabMsgErr)<1){
-    //   header("Location:index.php");
-    //   exit;
-    // }
   return $tabMsgErr;
 }
 
-//function errorMessages()
-// function du corrigé
-// if (isset($_POST["btnSubmit"])){
-//   if (isset($_POST["lastname"])){
-
-//   }
-// }
 ?>

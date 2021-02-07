@@ -25,6 +25,8 @@ require "controller.php";
 </div>
 
 <hr>
+<a href="form.php"> Page construction formulaire</a>
+<hr>
 
 <?php
 $showForm = true;

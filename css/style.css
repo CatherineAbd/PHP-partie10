@@ -1,4 +1,11 @@
-    h1{
+:root{
+  --colBackForm: #2c3e50;
+  --colBackInput: #f4e6a9;
+  --colTxtInput: #2c3e50;
+  --fontTxt: "Calisto MT", sans-serif;
+}
+
+  h1{
       width: 900px;
       margin: auto;
     }
@@ -39,7 +46,7 @@
 .divForm{
   /* display: flex; */
   /* flex-wrap: wrap; */
-  column-count: 3;
+  columns : 3;
 }
 
 .divFormElt{
@@ -61,4 +68,71 @@ span{
 
 .rightElt{
   border-color:default;
+  font-family: var(--fontTxt);
 }
+
+.titleFormRow{
+  display: flex;
+  justify-content: center;
+}
+
+.titleFormCol{
+  text-align: center;
+}
+
+.titleForm{
+  font-family: var(--fontTxt);
+  color: var(--colTxtInput);
+  text-shadow: 5px 5px 5px;
+}
+
+.iconField{
+  background-color: var(--colBackInput);
+  color: var(--colTxtInput);
+  height: 25px;
+}
+
+.divForm1{
+  width: 700px;
+  margin: auto;
+  background-color: var(--colBackForm);
+  border-radius: 10px;
+  box-shadow: 15px 10px 15px;
+}
+
+.inputRow{
+  padding: 10px 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.txtMsgErr{
+  color: red;
+}
+
+.inputCol{
+  color: var(--colTxtInput);
+ }
+
+.eltInput{
+  background-color: var(--colBackInput);
+  border-radius: 5px;
+  width: 250px;
+}
+
+.eltRadio{
+  background-color: var(--colBackInput);
+}
+
+.radioCol{
+  color: var(--colBackInput);
+  font-family: var(--fontTxt);
+}
+
+.btn{
+  background-color: var(--colBackForm);
+  color: var(--colBackInput);
+
+}
+
+
