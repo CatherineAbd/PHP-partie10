@@ -120,16 +120,55 @@ function crTabMsgErr ($tabCountries, $tabDiploma, &$showForm) {
         $tabMsgErr["numberEmploy"] = "le n° pôle emploi doit être 7 chiffres et 1 lettre MAJ";
         $showForm = true;
       }
+
+      // Link's Codecademy
+      if (empty($_POST["linkCodecademy"])){
+        $tabMsgErr["linkCodecademy"] = "Un lien Codecademy doit être saisi";
+        $showForm = true;
+      } else {
+        $cleanLink = filter_input(INPUT_POST, 'linkCodecademy', FILTER_SANITIZE_URL);
+        // on pourrait faire aussi filter_var($_POST["linkCodecademy"], FILTER_VALIDATE_URL);
+        if (!filter_var($cleanLink, FILTER_VALIDATE_URL)){
+          $tabMsgErr["linkCodecademy"] = "le lien Codecademy saisi n'est pas correct";
+          $showForm = true;
+        }
+      }
+
+      // Computer experience
+      if (empty($_POST['expComput'])){
+        $tabMsgErr['expComput'] = "Veuillez indiquer votre expérience informatique";
+        $showForm = true;
+      } elseif ($_POST['expComput'] <> 'Oui' && $_POST['expComput'] <> 'Non'){
+        $tabMsgErr['expComput'] = "Vous devez indiquer Oui ou Non";
+        $showForm = true;
+      }
       
+      // Super heros
+      if (empty($_POST['superHeros'])){
+        $tabMsgErr['superHeros'] = "Quel super héros voudriez-vous être et pourquoi ?";
+        $showForm = true;
+      }
+
+      // si tout est bon, on dirige vers la page qui traite les données. Il faut enregistrer les données dans 1 bd, des cookies ou sessions avant l'appel
       // if (count($tabMsgErr)<1){
-      //   header("Location:index.php");
+      //   header("Location:trt.php");
       //   exit;
-      // }
+      //}
     // fin if isset(btnSubmit)
     }
     // var_dump($tabMsgErr);
 
   return $tabMsgErr;
+}
+
+function inputCleaner ($input){
+  // enlève espace début et fin de chaîne
+  $input = trim($input);
+  // enlève les tags HTML
+  $input = strip_tags($input);
+  // échappe les car spéciaux
+  $input = htmlentities($input);
+  return $input;
 }
 
 ?>

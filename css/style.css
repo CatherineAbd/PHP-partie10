@@ -83,7 +83,7 @@ span{
 .titleForm{
   font-family: var(--fontTxt);
   color: var(--colTxtInput);
-  text-shadow: 5px 5px 5px;
+  text-shadow: 8px 5px 5px;
 }
 
 .iconField{
@@ -93,7 +93,7 @@ span{
 }
 
 .divForm1{
-  width: 700px;
+  width: 350px;
   margin: auto;
   background-color: var(--colBackForm);
   border-radius: 10px;
@@ -103,15 +103,19 @@ span{
 .inputRow{
   padding: 10px 10px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .txtMsgErr{
   color: red;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .inputCol{
   color: var(--colTxtInput);
+  vertical-align: middle;
  }
 
 .eltInput{
@@ -124,6 +128,12 @@ span{
   background-color: var(--colBackInput);
 }
 
+.eltTextArea{
+  background-color: var(--colBackInput);
+  border-radius: 5px;
+  width: 250px;
+}
+
 .radioCol{
   color: var(--colBackInput);
   font-family: var(--fontTxt);
@@ -132,7 +142,16 @@ span{
 .btn{
   background-color: var(--colBackForm);
   color: var(--colBackInput);
-
 }
 
+/* from bk md */
+@media screen and (min-width: 768px){
+  .divForm1{
+    width: 700px;
+    margin: auto;
+  }
+  .eltTextArea{
+    width: 500px;
+  }
+}
 

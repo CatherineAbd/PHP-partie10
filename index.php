@@ -20,7 +20,7 @@ require "controller.php";
   <p>• Liens codecademy</p>
   <p>• Si vous étiez un super héros/une super héroïne, qui seriez-vous et pourquoi ?</p>
   <p>• Racontez-nous un de vos "hacks" (pas forcément technique ou informatique)</p>
-  <p>• Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ?</p>
+  <p>• Avez vous déjà eu une expérience avec la programmation et/ou l"informatique avant de remplir ce formulaire ?</p>
   <p> A la validation de ces informations, il faudra les afficher dans la même page à la place du formulaire.</p>
 </div>
 
@@ -31,6 +31,8 @@ $showForm = true;
 $tabCountries = crTabCountries();
 $tabDiploma = crTabDiploma();
 $tabMsgErr = crTabMsgErr($tabCountries, $tabDiploma, $showForm);
+$input = inputCleaner("  sdlfk<script>je &qsdf*qse r&<>&   ");
+var_dump($input);
 
 if ($showForm) { ?>
   <div class="titleFormRow">
@@ -44,68 +46,68 @@ if ($showForm) { ?>
       <div class="inputRow">
         <div class="formLastname inputCol">
           <span class="iconField"><i class="far fa-user"></i></span>
-          <input type="text" id="lastname" name="lastname" placeholder="nom" value="<?= $_POST['lastname'] ?? '' ?>" class=" eltInput <?= isset($tabMsgErr['lastname']) ? 'falseElt' : 'rightElt' ?>" required>
+          <input type="text" id="lastname" name="lastname" placeholder="nom" value="<?= isset($_POST["lastname"]) ? htmlspecialchars($_POST["lastname"]) : "" ?>" class=" eltInput <?= isset($tabMsgErr["lastname"]) ? "falseElt" : "rightElt" ?>" required>
         </div>
         <div class="formFirstname inputCol">
           <span class="iconField"><i class="far fa-user"></i></span>
-          <input type="text" id="firstname" name="firstname" placeholder="prénom" value="<?= $_POST['firstname'] ?? '' ?>" class="eltInput <?= isset($tabMsgErr['firstname']) ? 'falseElt' : 'rightElt' ?>" required>
+          <input type="text" id="firstname" name="firstname" placeholder="prénom" value="<?= isset($_POST["firstname"]) ? htmlspecialchars($_POST["firstname"]) : "" ?>" class=" eltInput <?= isset($tabMsgErr["firstname"]) ? "falseElt" : "rightElt" ?>" required>
         </div>
       </div>
       <div class="inputRow">
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['lastname'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["lastname"] ?? "" ?></p>
         </div>
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['firstname'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["firstname"] ?? "" ?></p>
         </div>
       </div>
 
       <div class="inputRow">
         <div class="formEmail inputCol">
           <span class="iconField"><i class="fas fa-at"></i></i></span>
-          <input type="email" id="email" name="email" placeholder="adresse mail" value="<?= $_POST['email'] ?? '' ?>" class="eltInput <?= isset($tabMsgErr['email']) ? 'falseElt' : 'rightElt' ?>" required>
+          <input type="email" id="email" name="email" placeholder="adresse mail" value="<?= isset($_POST["email"]) ? htmlspecialchars($_POST["email"]) : "" ?>" class=" eltInput <?= isset($tabMsgErr["email"]) ? "falseElt" : "rightElt" ?>" required>
         </div>
         <div class="formTel inputCol">
-          <span class="iconField"><i class="fas fa-phone-square-alt"></i></i></span>
-          <input type="text" id="tel" name="tel" placeholder="n° de tél"  value="<?= $_POST['tel'] ?? '' ?>" class="eltInput <?= isset($tabMsgErr['tel']) ? 'falseElt' : 'rightElt' ?>" required>
+          <span class="iconField"><i class="fas fa-phone-alt"></i></i></span>
+          <input type="text" id="tel" name="tel" placeholder="n° de tél"  value="<?= isset($_POST["tel"]) ? htmlspecialchars($_POST["tel"]) : "" ?>" class=" eltInput <?= isset($tabMsgErr["tel"]) ? "falseElt" : "rightElt" ?>" required>
         </div>
       </div>
       <div class="inputRow">
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['email'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["email"] ?? "" ?></p>
         </div>
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['tel'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["tel"] ?? "" ?></p>
         </div>
       </div>
     
       <div class="inputRow">
         <div class="formBirthDate inputCol">
           <span class="iconField"><i class="fas fa-birthday-cake"></i></span>
-          <input type="date" id="birthDate" name="birthDate" value="<?= $_POST['birthDate'] ?? '' ?>" class="eltInput <?= isset($tabMsgErr['birthdate']) ? 'falseElt' : 'rightElt' ?>" required>
+          <input type="date" id="birthDate" name="birthDate" value="<?= isset($_POST["birthDate"]) ? htmlspecialchars($_POST["birthDate"]) : "" ?>" class="eltInput <?= isset($tabMsgErr["birthDate"]) ? "falseElt" : "rightElt" ?>" required>
         </div>
         <div class="formNumberEmploy inputcol">
           <span class="iconField"><i class="fas fa-tag"></i></span>
-          <input type="text" id="numberEmploy" name="numberEmploy" placeholder="1234567Z" value="<?= $_POST['numberEmploy'] ?? '' ?>" class="eltInput <?= isset($tabMsgErr['numberEmploy']) ? 'falseElt' : 'rightElt' ?>" required>
+          <input type="text" id="numberEmploy" name="numberEmploy" placeholder="1234567Z" value="<?= isset($_POST["numberEmploy"]) ? htmlspecialchars($_POST["numberEmploy"]) : "" ?>" class="eltInput <?= isset($tabMsgErr["numberEmploy"]) ? "falseElt" : "rightElt" ?>" required>
         </div>
       </div>
       <div class="inputRow">
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['birthDate'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["birthDate"] ?? "" ?></p>
         </div>
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['numberEmploy'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["numberEmploy"] ?? "" ?></p>
         </div>
       </div>
       
       <div class="inputRow">
         <div class="formCountry inputCol">
           <span class="iconField"><i class="fas fa-globe"></i></span>
-          <select class="eltInput" name="country" id="country">
+          <select class="eltInput <?= isset($tabMsgErr["country"]) ? "falseElt" : "rightElt" ?>" name="country" id="country">
             <option class="eltInput" selected disabled>Choisissez un pays</option>
             <?php
             foreach ($tabCountries as $country) { ?>
-              <option value="<?= $country ?>" <?= (isset($_POST['country']) && $_POST['country'] == $country) ? 'selected' : '' ?> class="eltInput"><?= $country ?></option>
+              <option value="<?= $country ?>" <?= (isset($_POST["country"]) && $_POST["country"] == $country) ? "selected" : "" ?> class="eltInput"><?= $country ?></option>
               <?php } ?>
           </select>
         </div>
@@ -116,10 +118,10 @@ if ($showForm) { ?>
       </div>
       <div class="inputRow">
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['country'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["country"] ?? "" ?></p>
         </div>
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['nationality'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["nationality"] ?? "" ?></p>
         </div>
       </div>
         
@@ -128,7 +130,7 @@ if ($showForm) { ?>
           <p>Diplôme</p>
           <?php
           foreach ($tabDiploma as $diploma) { ?>
-          <input type="radio" name="degree" value="<?= $diploma ?>" id="<?= $diploma ?>" <?= (isset($_POST['degree']) && $_POST['degree'] == $diploma) ? 'checked' : '' ?> class="eltRadio" required>
+          <input type="radio" name="degree" value="<?= $diploma ?>" id="<?= $diploma ?>" <?= (isset($_POST["degree"]) && $_POST["degree"] == $diploma) ? "checked" : "" ?> class="eltRadio" required>
           <label for="<?= $diploma ?>"><?= $diploma ?></label><br>
           <?php } ?>
         </div>
@@ -139,33 +141,67 @@ if ($showForm) { ?>
       </div>
       <div class="inputRow">
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['degree'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["degree"] ?? "" ?></p>
         </div>
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['address'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["address"] ?? "" ?></p>
         </div>
       </div>
         
       <div class="inputRow">
         <div class="formNumberBadge inputCol">
-        <span class="iconField"><i class="fas fa-calculator"></i></span>
-              <input type="number" id="numberBadge" name="numberBadge" placeholder="Nb de badges" value="<?= $_POST['numberBadge'] ?? '' ?>" class="eltInput <?= isset($tabMsgErr['numberBadge']) ? 'falseElt' : 'rightElt' ?>" required>
-              <span><?= $tabMsgErr['numberBadge'] ?? ''  ?></span>
+          <span class="iconField"><i class="fas fa-calculator"></i></span>
+          <input type="number" id="numberBadge" name="numberBadge" placeholder="Nb de badges" value="<?= isset($_POST["numberBadge"]) ? htmlspecialchars($_POST["numberBadge"]) : "" ?>" class="eltInput <?= isset($tabMsgErr["numberBadge"]) ? "falseElt" : "rightElt" ?>" required>
+        </div>
+        <div class="inputCol">
+          <span class="iconField"><i class="fas fa-at"></i></span>
+          <input type="url" id="linkCodecademy" name="linkCodecademy" placeholder="Lien Codecademy" value="<?= isset($_POST["linkCodecademy"]) ? htmlspecialchars($_POST["linkCodecademy"]) : "" ?>" class="eltInput <?= isset($tabMsgErr["linkCodecademy"]) ? "falseElt" : "rightElt" ?>">
         </div>
       </div>
       <div class="inputRow">
         <div class="inputCol">
-          <p class="txtMsgErr"><?= $tabMsgErr['numberBadge'] ?? '' ?></p>
+          <p class="txtMsgErr"><?= $tabMsgErr["numberBadge"] ?? "" ?></p>
         </div>
-        <div class="inputRow">
-          <div class="formBtn divFormElt">
-            <input type="submit" value="Valider" name="btnSubmit" class="btn">
-          </div>
+        <div class="inputCol">
+          <p class="txtMsgErr"><?= $tabMsgErr["linkCodecademy"] ?? "" ?></p>
         </div>
       </div>
 
+      <div class="inputRow">
+        <div class="radioCol">
+          <p>Expérience informatique</p>
+          <input type="radio" name="expComput" value="Oui" id="yes" <?= (isset($_POST["expComput"]) && $_POST["expComput"] == "Oui") ? "checked" : "" ?> class="eltRadio" required>
+          <label for="yes">Oui</label>
+          <input type="radio" name="expComput" value="Non" id="no" <?= (isset($_POST["expComput"]) && $_POST["expComput"] == "Non") ? "checked" : "" ?> class="eltRadio" required>
+          <label for="no">Non</label>
+        </div>
+      </div>
+      <div class="inputRow">
+        <div class="inputCol">
+          <p class="txtMsgErr"><?= $tabMsgErr["expComput"] ?? "" ?></p>
+        </div>
+      </div>
+
+      <div class="inputRow">
+        <div class="formSuperHeros inputCol">
+        <span class="iconField"><i class="fas fa-mask"></i></span>
+          <textarea id="superHeros" name="superHeros" rows="5" cols="100" placeholder="Si vous étiez un super héros/une super héroïne, qui seriez-vous et pourquoi" class="eltTextArea <?= isset($tabMsgErr["superHeros"]) ? "falseElt" : "rightElt" ?>" required><?= isset($_POST["superHeros"]) ? htmlspecialchars($_POST["superHeros"]) : "" ?></textarea>
+        </div>
+      </div>
+      <div class="inputRow">
+        <div class="inputCol">
+          <p class="txtMsgErr"><?= $tabMsgErr["superheros"] ?? "" ?></p>
+        </div>
+      </div>
+
+      <div class="inputRow">
+          <div class="formBtn divFormElt">
+            <input type="submit" value="Valider" name="btnSubmit" class="btn">
+          </div>
+      </div>
+
+
       <!--<div class="formLinkCodecademy divFormElt"><label class="shortLabel" for="linkCodecademy">Liens Codecademy</label><textarea id="linkCodecademy" name="linkCodecademy" rows="10" cols="50" required></textarea></div>
-      <div class="formSuperHeros divFormElt"><label for="superHeros">Si vous étiez un super héros/une super héroïne, qui seriez-vous et pourquoi</label><textarea id="superHeros" name="superheros" rows="10" cols="50" required></textarea></div>
       <div class="formHack divFormElt"><label for="hack">Racontez-nous un de vos "hacks" (pas forcément technique ou informatique)</label><textarea name="hack" id="hack" cols="30" rows="10" required></textarea></div>
       <div class="formComputerExp divFormElt">Avez vous déjà eu une expérience avec la programmation et/ou l'informatique avant de remplir ce formulaire ?
         <input type="radio" id="computerExpYes" name="computerExp" value="yes"><label for="computerExp" required>oui</label>
@@ -192,6 +228,7 @@ if ($showForm) { ?>
     <div class="formBtn divFormElt"><input type="submit" value="Retour au formulaire" name="btnRazForm"></div>
   </form>
 <?php
-}
-include "..\bottom_html.php";
+}?>
+<script src="js/script.js "></script>
+<?php include "..\bottom_html.php";
 ?>
